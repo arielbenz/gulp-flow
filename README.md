@@ -1,6 +1,6 @@
 # Gulp Flow
 
-This a content package project generated using the AEM Multimodule Lazybones template.
+This a content package project generated using the AEM Multimodule Lazybones template and implement gulp for the frontend tasks.
 
 ## Building
 
@@ -11,7 +11,9 @@ From the root directory, run ``mvn -PautoInstallPackage clean install`` to build
 From the bundle directory, run ``mvn -PautoInstallBundle clean install`` to build *just* the bundle and install to a CQ instance.
 
 ``gulp watch`` - Watches for changes to JavaSript, CSS/Sass, and HTML files, runs any necessary subtasks and slings the result to AEM.
+
 ``gulp sass`` - Builds all Sass files and slings the compiled stylesheet and source maps to AEM.
+
 ``gulp js:lint`` - Runs all JavaScript files against JSHint and outputs the results to the console.
 
 ## Using with AEM Developer Tools for Eclipse
