@@ -1,0 +1,57 @@
+# Compiled source #
+###################
+*.class
+*.dll
+*.exe
+
+# IntelliJ files #
+##################
+*.iml
+*.idea
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
+
+# Eclipse files #
+#################
+.project
+
+
+# Sightly Brackets Plugin #
+###########################
+.brackets.json
+
+# Vault files #
+###############
+*.vlt
+
+*.git
+
+# Miscellaneous files #
+#######################
+.DS_Store*
+*.log
+nb*.xml
+*.project
+target
+Thumbs.db
+*.settings
+*.classpath
+libs
+/libs
+/libs*
+/libs/*
+# Web project files generated in NetBeans for developing the CQ UI.
+nbproject/private/
+src/content/conf
+src/content/nbproject
+src/content/WEB-INF
+src/content/build.xml
+
+*.dir
+generated
+install
+
+# UI Package Managers #
+#######################
+node_modules

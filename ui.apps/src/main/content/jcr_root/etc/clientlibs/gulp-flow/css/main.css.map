@@ -1,0 +1,22 @@
+{
+	"version": 3,
+	"file": "main.css",
+	"sources": [
+		"../styles/main.scss",
+		"../scss/helpers/_variables.scss",
+		"../scss/helpers/_colors.scss",
+		"../scss/helpers/_mixins.scss",
+		"../scss/helpers/_utils.scss",
+		"../scss/base/_reset.scss",
+		"../scss/base/_base.scss",
+		"../scss/base/_typography.scss",
+		"../scss/layout/_grid.scss",
+		"../scss/layout/_breakpoints.scss",
+		"../scss/modules/_elements.scss",
+		"../scss/components.scss",
+		"../../../../apps/gulp-flow/components/content/header/scss/_header.scss"
+	],
+	"sourcesContent": [],
+	"mappings": "AMAA,IAAI,AAAC,CACD,WAAW,CAAE,MAAO,CACpB,MAAM,CAAE,IAAK,CACb,sBAAsB,CAAE,WAAY,CAHlC,AAMN,IAAI,AAAC,CACD,gBAAgB,CLPZ,OAAO,CKMT,AMNN,OAAO,AAAC,CACJ,gBAAgB,CAAE,GAAI,CACtB,UAAU,CAAE,KAAM,CAFb",
+	"names": []
+}

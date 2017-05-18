@@ -1,0 +1,19 @@
+{
+    "name": "gulp-flow",
+    "version": "0.0.1",
+    "description": "Gulp flow project",
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-jshint": "^2.0.4",
+        "gulp-plumber": "^1.1.0",
+        "gulp-rename": "^1.2.2",
+        "gulp-sass": "^3.1.0",
+        "gulp-slang": "^1.0.1",
+        "gulp-sourcemaps": "^2.5.1",
+        "gulp-util": "^3.0.8",
+        "gulp-watch": "^4.3.11",
+        "jshint": "^2.9.4"
+    }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/gulp-flow"/>
+
+    <filter root="/apps/sling/servlet/errorhandler"/>
+
+    <filter root="/etc/clientlibs/gulp-flow">
+        <exclude pattern="/etc/clientlibs/gulp-flow/scss"/>
+        <exclude pattern="/etc/clientlibs/gulp-flow/styles"/>
+    </filter>
+
+    <filter root="/etc/designs/gulp-flow">
+        <include pattern="/etc/designs/gulp-flow/jcr:content"/>
+        <include pattern="/etc/designs/gulp-flow/images"/>
+    </filter>
+
+</workspaceFilter>

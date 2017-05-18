@@ -1,0 +1,18 @@
+<body data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}">
+
+	<sly data-sly-include="header.html"></sly>
+
+	<main role="main" class="content-main">
+		<div class="page">
+		    <div class="container">
+		        <sly data-sly-include="content.html" data-sly-unwrap></sly>
+		    </div>
+		</div>
+    </main>
+
+	<sly data-sly-include="footer.html"></sly>
+
+	<!--/* scripts shared this specific brand page template */-->
+	<sly data-sly-include="scripts.html"></sly>
+
+</body>
