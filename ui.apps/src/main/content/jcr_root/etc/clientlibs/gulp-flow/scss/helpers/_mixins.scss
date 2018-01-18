@@ -1,0 +1,198 @@
+// Mixins
+// ------------------------------------------------------------------------
+//
+// Sample Usage
+// ------------------------------------------------------------------------
+// .someclass {
+//     @include mixin-name;
+// }
+
+@mixin no-select {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+@mixin opacity($trans) {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})";
+        filter: alpha(opactiy = $trans * 100);
+    -khtml-opacity: $trans;
+      -moz-opacity: $trans;
+           opacity: $trans;
+}
+
+@mixin placeholder {
+    &:focus { outline: 0 none; }
+    &::-webkit-input-placeholder { @content; }
+    &:-ms-input-placeholder      { @content; }
+    &::-moz-placeholder          { @content; }
+    &:-moz-placeholder           { @content; }
+    &.placeholder                { @content; }
+}
+
+@mixin clearfix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin reset-container {
+    max-width: initial;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+@mixin divider {
+    content: ' ';
+    display: block;
+    @include scale(padding-top, 20px);
+    @include scale(margin-bottom, 30px);
+    border-bottom: 1px solid #e5e5e5;
+}
+
+@mixin rounded-element {
+    @include border-radius(100px);
+}
+
+// Usage:
+// .class { @include word-wrap(); }
+// http://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+// ------------------------------------------------------------------------
+@mixin word-wrap() {
+    -ms-word-break: break-all;
+
+    // Be VERY careful with this, breaks normal words wh_erever
+    word-break: break-all;
+
+    // Non standard for webkit
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+            hyphens: auto;
+}
+
+// To use CSS3's Flexbox
+// ------------------------------------------------------------------------
+// For more information: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+// Examples:
+// .wrapper { @include flexbox(); }
+// .item    { @include order(1); }
+// .item    { @include order(2); }
+//
+// The flexbox() mixin defaults to column but has the following options available:
+//   - row
+//   - row-reverse
+//   - column
+//   - column-reverse;
+@mixin flexbox() {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: flex;
+}
+
+@mixin flex-direction($value) {
+  -webkit-flex-direction: $value;
+          flex-direction: $value;
+}
+
+@mixin flex-wrap($value) {
+  -webkit-flex-wrap: $value;
+     -moz-flex-wrap: $value;
+      -ms-flex-wrap: $value;
+          flex-wrap: $value;
+}
+
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+       -moz-box-flex: $values;
+        -webkit-flex: $values;
+            -ms-flex: $values;
+                flex: $values;
+}
+@mixin flex-order($val) {
+    -webkit-box-ordinal-group: $val;
+       -moz-box-ordinal-group: $val;
+               -ms-flex-order: $val;
+                -webkit-order: $val;
+                        order: $val;
+}
+
+@mixin flex-align-items($value: center) {
+    -webkit-align-items: $value;
+       -moz-align-items: $value;
+        -ms-align-items: $value;
+         -ms-flex-align: $value;
+            align-items: $value;
+}
+@mixin flex-justify-content($value: center) {
+    -webkit-justify-content: $value;
+       -moz-justify-content: $value;
+              -ms-flex-pack: $value;
+            justify-content: $value;
+}
+@mixin flex-align-content($value: center) {
+      -webkit-align-content: $value;
+         -moz-align-content: $value;
+          -ms-align-content: $value;
+              align-content: $value;
+}
+@mixin flex-align-self($value) {
+    -webkit-align-self: $value;
+            align-self: $value;
+}
+
+@mixin box-shadow($string) {
+    box-shadow: $string;
+    -webkit-box-shadow: $string;
+    -moz-box-shadow: $string;
+}
+
+// http://compass-style.org/reference/compass/typography/lists/bullets/#mixin-no-bullets
+@mixin no-bullets {
+    list-style: none;
+    li {
+        @include no-bullet;
+    }
+}
+
+// http://compass-style.org/reference/compass/typography/lists/bullets/#mixin-no-bullet
+@mixin no-bullet {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0;
+}
+
+@mixin transform($string) {
+    -webkit-transform: #{$string};
+       -moz-transform: #{$string};
+        -ms-transform: #{$string};
+         -o-transform: #{$string};
+            transform: #{$string};
+}
+
+@mixin transition($string) {
+  -webkit-transition: $string;
+     -moz-transition: $string;
+       -o-transition: $string;
+      -ms-transition: $string;
+          transition: $string;
+}
+
+@mixin transition-duration($string: $default-transition-duration) {
+    -webkit-transition-duration: $string;
+       -moz-transition-duration: $string;
+         -o-transition-duration: $string;
+            transition-duration: $string;
+}

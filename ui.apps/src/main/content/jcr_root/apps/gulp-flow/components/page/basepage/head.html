@@ -3,9 +3,8 @@
 	  data-sly-use.headlibRenderer="headlibs.html"
 	  data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}">
 
-	<sly data-sly-include="head-metas.html" data-sly-unwrap></sly>
-
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no">
 	<meta name="keywords" content="${head.keywords}">
 	<meta name="description" content="${head.description}">
 	<meta data-sly-call="${headlibRenderer.headlibs @ designPath=head.designPath}" data-sly-unwrap></meta>

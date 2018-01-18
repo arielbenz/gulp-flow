@@ -1,9 +1,15 @@
 html {
-    font-weight: normal;
-    height: 100%;
-    -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-    background-color: $black;
+  @include flexbox();
+  @include flex-direction(column);
+  min-height: 100vh;
+  background-color: red;
+}
+
+main {
+  @include flex(1);
 }

@@ -14,7 +14,7 @@ From the bundle directory, run ``mvn -PautoInstallBundle clean install`` to buil
 
 ``gulp sass`` - Builds all Sass files and slings the compiled stylesheet and source maps to AEM.
 
-``gulp js:lint`` - Runs all JavaScript files against JSHint and outputs the results to the console.
+``gulp js:lint`` - Runs all JavaScript files against ESLint and outputs the results to the console.
 
 ## Using with AEM Developer Tools for Eclipse
 

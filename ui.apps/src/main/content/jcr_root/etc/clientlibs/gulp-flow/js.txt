@@ -1,3 +1,4 @@
 #base=js
 
-main.js
+internal/main.js
+internal/utils.js

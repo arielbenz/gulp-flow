@@ -4,6 +4,6 @@
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:description="Single Page"
     jcr:primaryType="cq:Component"
-    jcr:title="Single Page Component"
+    jcr:title="Single Page"
     sling:resourceSuperType="gulp-flow/components/page/basepage"
     componentGroup=".hidden"/>
