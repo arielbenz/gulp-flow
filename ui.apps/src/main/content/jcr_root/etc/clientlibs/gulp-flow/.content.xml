@@ -3,6 +3,6 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:ClientLibraryFolder"
     sling:resourceType="widgets/clientlib"
-    embed="[gulp-flow-frontend.vendor, gulp-flow-frontend.components]"
+    embed="[gulp-flow-frontend.components]"
     categories="[gulp-flow-frontend.design]"
   />
