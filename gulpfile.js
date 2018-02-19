@@ -91,10 +91,10 @@ gulp.task('sass:sling', ['sass:build'], function () {
 gulp.task('sass', ['sass:build', 'sass:sling']);
 
 /**
- * Task: `js:lint`
+ * Task: `js:eslint`
  * Lint the javascript files.
  */
-gulp.task('js:lint', function () {
+gulp.task('js:eslint', function () {
     return gulp.src([components + '**/*.js', jsPath + '**/*.js'])
         .pipe(eslint())
         .pipe(eslint.format());
@@ -105,7 +105,7 @@ gulp.task('js:lint', function () {
  * Watches the HTML, Sass, and JS for changes.
  */
 gulp.task('watch', function () {
-    var jsWatch = gulp.watch([components + '**/*.js', jsPath + '**/*.js'], ['js:lint']),
+    var jsWatch = gulp.watch([components + '**/*.js', jsPath + '**/*.js'], ['js:eslint']),
         sassWatch = gulp.watch([components + '**/*.scss', mainCss, sassPath + '**/*.scss'], ['sass']),
         markupWatch = gulp.watch([components + '**/**/*.html', components + '**/**/*.jsp']);
 
@@ -113,18 +113,21 @@ gulp.task('watch', function () {
 
     // Check changes for javascript files
     jsWatch.on('change', function (ev) {
+        gutil.log('Javascript changes on ' + gutil.colors.cyan.bold(ev.path));
         return gulp.src(ev.path).pipe(slang(ev.path));
     });
 
     // Check changes for SCSS files
     sassWatch.on('change', function (ev) {
+        gutil.log('SCSS changes on ' + gutil.colors.cyan.bold(ev.path));
         return gulp.src(ev.path).pipe(slang(ev.path));
     });
 
     // Check changes for HTML files
     markupWatch.on('change', function (ev) {
+        gutil.log('HTML changes on ' + gutil.colors.cyan.bold(ev.path));
         return gulp.src(ev.path).pipe(slang(ev.path));
     });
 });
 
-gulp.task('build', ['sass:build', 'js:lint']);
+gulp.task('build', ['sass:build', 'js:eslint']);
