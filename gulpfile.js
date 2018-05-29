@@ -54,10 +54,10 @@ function options() {
  */
 gulp.task('sass:build', function (cb) {
     var compressed = 'compressed';
-    if (options().debug) {
-        gutil.log('File ' + gutil.colors.cyan.bold(maincss));
-        compressed = 'expanded';
-    }
+    // if (options().debug) {
+    //     gutil.log('File ' + gutil.colors.cyan.bold(maincss));
+    //     compressed = 'expanded';
+    // }
 
     gulp.src(mainCss)
         .pipe(plumber())
