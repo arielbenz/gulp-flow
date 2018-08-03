@@ -1,1 +1,2 @@
 **/js/external/*.js
+node_modules/**/*
