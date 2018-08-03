@@ -29,6 +29,7 @@ atlassian-ide-plugin.xml
 
 # Miscellaneous files #
 #######################
+.DS_Store
 .DS_Store*
 *.log
 nb*.xml
@@ -55,3 +56,6 @@ install
 # UI Package Managers #
 #######################
 node_modules
+
+ui.apps/src/main/content/jcr_root/etc/clientlibs/gulp-flow/css/main.css
+ui.apps/src/main/content/jcr_root/etc/clientlibs/gulp-flow/css/main.css.map
