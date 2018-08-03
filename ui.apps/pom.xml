@@ -110,26 +110,6 @@
             </plugin>
 
             <plugin>
-                <groupId>com.cj.jshintmojo</groupId>
-                <artifactId>jshint-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>lint</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <directories>
-                        <directory>src/main/content/jcr_root/apps</directory>
-                        <directory>src/main/content/jcr_root/etc/clientlibs/gulp-flow/js</directory>
-                    </directories>
-                    <failOnError>true</failOnError>
-                    <globals>jQuery,window,$,use,properties,pageProperties,inheritedPageProperties,component,componentContext,currentDesign,currentNode,currentPage,currentSession,currentStyle,designer,editContext,log,out,pageManager,reader,request,resource,resourceDesign,resourcePage,response,sling,slyWcmHelper,wcmmode,xssAPI</globals>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>com.github.warmuuh</groupId>
                 <artifactId>libsass-maven-plugin</artifactId>
                 <version>0.2.10-libsass_3.5.3</version>
@@ -150,6 +130,45 @@
                             </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>v8.11.3</nodeVersion>
+                            <npmVersion>5.6.0</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                    <execution>
+                        <id>gulp build</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <workingDirectory>../</workingDirectory>
+                </configuration>
             </plugin>
 
             <plugin>

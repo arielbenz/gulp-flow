@@ -55,6 +55,7 @@ install
 
 # UI Package Managers #
 #######################
+node
 node_modules
 
 ui.apps/src/main/content/jcr_root/etc/clientlibs/gulp-flow/css/main.css
