@@ -1,72 +1,74 @@
 // gulpfile.js
 
-var namespace = 'gulp-flow';
+const namespace = 'gulp-flow';
 
-var gulp        = require('gulp'),
-    watch       = require('gulp-watch'),
-    gutil       = require('gulp-util'),
-    plumber     = require('gulp-plumber'),
-    slang       = require('gulp-slang'),
-    debug       = require('gulp-debug'),
-    options     = require('gulp-options'),
-    sass        = require('gulp-sass'),
-    sourcemaps  = require('gulp-sourcemaps'),
-    eslint      = require('gulp-eslint');
+const   gulp                = require('gulp'),
+        watch               = require('gulp-watch'),
+        gutil               = require('gulp-util'),
+        plumber             = require('gulp-plumber'),
+        slang               = require('gulp-slang'),
+        debug               = require('gulp-debug'),
+        options             = require('gulp-options'),
+        sass                = require('gulp-sass'),
+        sourcemaps          = require('gulp-sourcemaps'),
+        postcss             = require('gulp-postcss'),
+        autoprefixer        = require('autoprefixer'),
+        cssnano             = require('cssnano'),
+        eslint              = require('gulp-eslint'),
+        reporter            = require('postcss-reporter');
 
-var root        = 'ui.apps/src/main/content/jcr_root/',
-    components  = root + 'apps/' + namespace + '/components/',
-    designs     = root + 'etc/designs/' + namespace + '/',
-    clientlibs  = root + 'etc/clientlibs/' + namespace + '/',
-    cssPath     = clientlibs + 'css/',
-    sassPath    = clientlibs + 'scss/',
-    mainCss     = clientlibs + 'styles/main.scss',
-    cssBuild    = cssPath + 'main.css',
-    cssSrcMaps  = cssPath + 'main.css.map',
-    jsPath      = clientlibs + 'js/internal';
+// --------------------------------------------------------
+// Configuration
+// --------------------------------------------------------
+
+const   root      = 'ui.apps/src/main/content/jcr_root/',
+        components  = root + 'apps/' + namespace + '/components/',
+        designs     = root + 'etc/designs/' + namespace + '/',
+        clientlibs  = root + 'etc/clientlibs/' + namespace + '/',
+        cssPath     = clientlibs + 'css/',
+        sassPath    = clientlibs + 'scss/',
+        mainCss     = clientlibs + 'styles/main.scss',
+        cssBuild    = cssPath + 'main.css',
+        cssSrcMaps  = cssPath + 'main.css.map',
+        jsPath      = clientlibs + 'js/internal';
 
 
-/**
- * Helper: options
- * Add options parameters in Gulp.
- */
+const autoPrefixerConfig = autoprefixer({
+    browsers: ['last 2 version', 'safari 10', 'ie 11', 'ios 10', 'android 4']
+});
 
-function options() {
-    var opts = {
-        prod: false,
-        debug: false,
-        env: 'local'
-    };
-    if (options.has('env')) {
-        opts.env = options.get('env');
-    }
-    if (options.has('debug')) {
-        opts.debug = options.get('debug');
-    }
-    if (options.has('prod')) {
-        opts.prod = options.get('prod');
-    }
-    return opts;
-}
+const processors = [
+  autoPrefixerConfig,
+  cssnano({
+    options: {
+      safe: true
+    },
+    autoprefixer: true,
+    discardComments: {
+      removeAll: true
+    },
+    colormin: true
+  }),
+  reporter()
+];
 
-/**
- * Task: `sass:build`
- * Compiles the scss files.
- */
+const scssConfig = {
+    outputStyle: 'compressed',
+    omitSourceMapUrl: true,
+    includePaths: [sassPath, components]
+};
+
+// --------------------------------------------------------
+// Task: `sass:build`
+// Compiles the scss files.
+// --------------------------------------------------------
+
 gulp.task('sass:build', function (cb) {
-    var compressed = 'compressed';
-    // if (options().debug) {
-    //     gutil.log('File ' + gutil.colors.cyan.bold(maincss));
-    //     compressed = 'expanded';
-    // }
-
     gulp.src(mainCss)
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(sass({
-            outputStyle: compressed,
-            omitSourceMapUrl: true,
-            includePaths: [sassPath, components]
-        }).on('error', sass.logError))
+        .pipe(sass(scssConfig).on('error', sass.logError))
+        .pipe(postcss(processors))
         .pipe(sourcemaps.write('./', {
             addComment: false
         }))
@@ -75,37 +77,41 @@ gulp.task('sass:build', function (cb) {
         .on('end', cb);
 });
 
-/**
- * Task: `sass:sling`
- * Slings the compiled CSS and sourcemaps to AEM.
- */
+// --------------------------------------------------------
+// Task: `sass:sling`
+// Slings the compiled CSS and sourcemaps to AEM.
+// --------------------------------------------------------
+
 gulp.task('sass:sling', ['sass:build'], function () {
     return gulp.src([cssBuild, cssSrcMaps])
         .pipe(slang());
 });
 
-/**
- * Task: `sass`
- * Runs the sass build and slings the results to AEM.
- */
+// --------------------------------------------------------
+// Task: `sass`
+// Runs the sass build and slings the results to AEM.
+// --------------------------------------------------------
+
 gulp.task('sass', ['sass:build', 'sass:sling']);
 
-/**
- * Task: `js:eslint`
- * Lint the javascript files.
- */
+// --------------------------------------------------------
+// Task: `js:eslint`
+// Lint the javascript files.
+// --------------------------------------------------------
+
 gulp.task('js:eslint', function () {
     return gulp.src([components + '**/*.js', jsPath + '**/*.js'])
         .pipe(eslint())
         .pipe(eslint.format());
 });
 
-/**
- * Task: `watch`
- * Watches the HTML, Sass, and JS for changes.
- */
+// --------------------------------------------------------
+// Task: `watch`
+// Watches the HTML, Sass, and JS for changes.
+// --------------------------------------------------------
+
 gulp.task('watch', function () {
-    var jsWatch = gulp.watch([components + '**/*.js', jsPath + '**/*.js'], ['js:eslint']),
+    const jsWatch = gulp.watch([components + '**/*.js', jsPath + '**/*.js'], ['js:eslint']),
         sassWatch = gulp.watch([components + '**/*.scss', mainCss, sassPath + '**/*.scss'], ['sass']),
         markupWatch = gulp.watch([components + '**/**/*.html', components + '**/**/*.jsp']);
 

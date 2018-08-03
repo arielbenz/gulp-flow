@@ -132,7 +132,7 @@
             <plugin>
                 <groupId>com.github.warmuuh</groupId>
                 <artifactId>libsass-maven-plugin</artifactId>
-                <version>0.1.6-libsass_3.2.4</version>
+                <version>0.2.10-libsass_3.5.3</version>
                 <executions>
                     <execution>
                         <id>compile-sass</id>
@@ -141,7 +141,7 @@
                             </goals>
                             <configuration>
                                 <inputPath>${project.basedir}/src/main/content/jcr_root/etc/clientlibs/gulp-flow/styles</inputPath>
-                                <includePath>${project.basedir}/src/main/content/jcr_root/etc/clientlibs/gulp-flow/scss:${project.basedir}/src/main/content/jcr_root/apps/gulp-flow/components</includePath>
+                                <includePath>${project.basedir}/src/main/content/jcr_root/etc/clientlibs/gulp-flow/scss;${project.basedir}/src/main/content/jcr_root/apps/gulp-flow/components</includePath>
                                 <outputPath>${project.basedir}/src/main/content/jcr_root/etc/clientlibs/gulp-flow/css</outputPath>
                                 <outputStyle>compressed</outputStyle>
                                 <generateSourceMap>true</generateSourceMap>
