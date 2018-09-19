@@ -27,7 +27,7 @@ const   root      = 'ui.apps/src/main/content/jcr_root/',
         clientlibs  = root + 'etc/clientlibs/' + namespace + '/',
         cssPath     = clientlibs + 'css/',
         sassPath    = clientlibs + 'scss/',
-        mainCss     = clientlibs + 'styles/main.scss',
+        mainScss    = clientlibs + 'styles/main.scss',
         cssBuild    = cssPath + 'main.css',
         cssSrcMaps  = cssPath + 'main.css.map',
         jsPath      = clientlibs + 'js/internal';
@@ -64,7 +64,7 @@ const scssConfig = {
 // --------------------------------------------------------
 
 gulp.task('sass:build', function (cb) {
-    gulp.src(mainCss)
+    gulp.src(mainScss)
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass(scssConfig).on('error', sass.logError))
@@ -112,7 +112,7 @@ gulp.task('js:eslint', function () {
 
 gulp.task('watch', function () {
     const jsWatch = gulp.watch([components + '**/*.js', jsPath + '**/*.js'], ['js:eslint']),
-        sassWatch = gulp.watch([components + '**/*.scss', mainCss, sassPath + '**/*.scss'], ['sass']),
+        sassWatch = gulp.watch([components + '**/*.scss', mainScss, sassPath + '**/*.scss'], ['sass']),
         markupWatch = gulp.watch([components + '**/**/*.html', components + '**/**/*.jsp']);
 
     gutil.log('Waiting for changes...');
